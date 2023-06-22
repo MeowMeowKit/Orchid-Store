@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }) => {
       if (storeData !== null) setFavourites(storeData);
       setOrchids((prev) =>
         prev.filter((item) =>
-          selectType === "All" ? item : item.type === "All"
+          selectType === "All" ? item : item.type === selectType
         )
       );
       setLoading(false);

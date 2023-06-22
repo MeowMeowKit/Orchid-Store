@@ -99,6 +99,16 @@ export const DetailScreen = ({ route, navigation }) => {
               size={20}
               onPress={() => navigation.goBack()}
             />
+          </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              position: "absolute",
+              top: 5,
+              right: 5,
+            }}
+          >
             <IconButton
               icon={isFavourite ? "cards-heart" : "cards-heart-outline"}
               mode="contained"

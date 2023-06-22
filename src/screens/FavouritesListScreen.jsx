@@ -12,13 +12,18 @@ import {
   useColorScheme,
 } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
-import { ActivityIndicator, MD3Colors, Searchbar } from "react-native-paper";
+import {
+  ActivityIndicator,
+  IconButton,
+  MD3Colors,
+  Searchbar,
+} from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import datas from "../shared/data.json";
 import OrchidCard from "../component/OrchidCard";
 import Categories from "../component/Categories";
 
-export const FavouritesListScreen = () => {
+export const FavouritesListScreen = ({ navigation }) => {
   const colorScheme = useColorScheme();
 
   const isFocused = useIsFocused();
@@ -101,14 +106,12 @@ export const FavouritesListScreen = () => {
                 horizontal={false}
                 ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
                 // style={{ flex: 1 }}
-                renderItem={({ item, index, separators }) => (
+                renderItem={({ item }) => (
                   <OrchidCard
                     orchid={item}
                     favourites={favourites}
                     setFavourites={setFavourites}
-                    // onShowUnderlay={separators.highlight}
-                    // onHideUnderlay={separators.unhighlight}
-                    navigation={""}
+                    navigation={navigation}
                   />
                 )}
                 keyExtractor={(item) => item.id}
@@ -122,6 +125,20 @@ export const FavouritesListScreen = () => {
           </View>
         </View>
       </View>
+      <View>
+        <IconButton
+          icon="trash-can"
+          mode="contained"
+          iconColor={MD3Colors.error60}
+          size={32}
+          onPress={showAlertDeleteAll}
+          style={{
+            position: "absolute",
+            bottom: 5,
+            right: 5,
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -129,6 +146,7 @@ export const FavouritesListScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    position: "relative",
   },
   wrapper: {
     flex: 1,

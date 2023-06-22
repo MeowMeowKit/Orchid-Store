@@ -25,7 +25,9 @@ export default function App() {
   const FlowerListScreen = ({ navigation }) => (
     <HomeScreen navigation={navigation} />
   );
-  const FavouriteListScreen = () => <FavouritesListScreen />;
+  const FavouriteListScreen = ({ navigation }) => (
+    <FavouritesListScreen navigation={navigation} />
+  );
   const DetailOrchid = ({ route, navigation }) => (
     <DetailScreen route={route} navigation={navigation} />
   );
@@ -33,7 +35,7 @@ export default function App() {
     return (
       <Drawer.Navigator useLegacyImplementation={true}>
         <Drawer.Screen name="OrdChid Shop" component={MainTabs} />
-        <Drawer.Screen name="Favourites" component={FavouriteListScreen} />
+        {/* <Drawer.Screen name="Favourites" component={FavouriteListScreen} /> */}
         <Drawer.Screen name="Contact" component={ContactScreen} />
       </Drawer.Navigator>
     );
